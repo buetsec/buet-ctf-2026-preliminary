@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    ports:
+      - "7513:8080"
+    environment:
+      - FLAG=buetctf{5m4r7_h0m3_3v41_inj3cti0n_1337}
+      - PAIRING_TOKEN=smart-home
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

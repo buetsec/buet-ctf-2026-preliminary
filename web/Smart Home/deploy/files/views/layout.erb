@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Smart Home</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body data-page="<%= request.path_info == '/dashboard' ? 'dashboard' : 'home' %>">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="/" aria-label="SmartHome">
+        <span class="brand__dot" aria-hidden="true"></span>
+        <span class="brand__name">Smart Home</span>
+      </a>
+      <div class="topbar__right">
+        <nav class="nav" aria-label="Primary">
+          <a class="nav__link <%= request.path_info == '/' ? 'is-active' : '' %>" href="/" <%= request.path_info == '/' ? 'aria-current="page"' : '' %>>Overview</a>
+          <a class="nav__link <%= request.path_info == '/dashboard' ? 'is-active' : '' %>" href="/dashboard" <%= request.path_info == '/dashboard' ? 'aria-current="page"' : '' %>>Dashboard</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <%= yield %>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="muted">Smart Home</span>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

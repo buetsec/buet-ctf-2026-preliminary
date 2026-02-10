@@ -1,0 +1,77 @@
+<section class="card hero hero--home">
+  <div class="hero__top">
+    <div class="hero__copy">
+      <div class="eyebrow">SmartHome</div>
+      <h1>Control your home, comfortably.</h1>
+      <p class="muted">A simple dashboard for lighting, climate, access, and security.</p>
+
+      <div class="actions">
+        <a class="btn btn--primary" href="/dashboard">Open dashboard</a>
+        <a class="btn btn--ghost" href="/dashboard#activity">View activity</a>
+      </div>
+    </div>
+
+    <div class="hero__panel" aria-label="System summary">
+      <div class="panelRow">
+        <span class="muted">Hub</span>
+        <span class="pill pill--ok">Online</span>
+      </div>
+      <div class="panelRow">
+        <span class="muted">Connection</span>
+        <span class="pill">Stable</span>
+      </div>
+      <div class="panelRow">
+        <span class="muted">Mode</span>
+        <span class="pill">Home</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__stats" aria-label="Overview">
+    <div class="stat">
+      <div class="stat__k">Devices</div>
+      <div class="stat__v" id="homeDevices"><%= (@device_count || 0) %> online</div>
+    </div>
+    <div class="stat">
+      <div class="stat__k">Rooms</div>
+      <div class="stat__v"><%= (@room_count || 0) %></div>
+    </div>
+    <div class="stat">
+      <div class="stat__k">Last activity</div>
+      <div class="stat__v" id="homeLast">—</div>
+    </div>
+  </div>
+</section>
+
+<div class="homeGrid">
+  <section class="card">
+    <div class="card__head">
+      <h2 class="h2">Rooms</h2>
+      <span class="muted small">Quick access</span>
+    </div>
+
+    <div class="roomGrid" aria-label="Rooms">
+      <% (@home_rooms || []).each do |r| %>
+        <a class="roomCard roomCard--link" href="/dashboard?room=<%= URI.encode_www_form_component(r[:name].to_s) %>" aria-label="Open <%= r[:name] %> devices">
+          <div class="roomTop">
+            <div class="roomName"><%= r[:name] %></div>
+            <span class="badge badge--ok">Online</span>
+          </div>
+          <div class="roomMeta muted"><%= r[:meta] %></div>
+        </a>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card__head">
+      <h2 class="h2">Recent activity</h2>
+      <span id="homeActivityMeta" class="muted small">Updating…</span>
+    </div>
+
+    <ul id="homeActivityList" class="activityList" aria-label="Recent activity"></ul>
+
+    <div class="divider"></div>
+    <a class="btn btn--ghost" href="/dashboard#activity">Open full activity</a>
+  </section>
+</div>

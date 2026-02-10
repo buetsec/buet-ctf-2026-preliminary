@@ -1,0 +1,394 @@
+<div class="dashHead">
+  <div class="dashTitle">
+    <div class="eyebrow">My Home</div>
+    <h1>Dashboard</h1>
+    <p class="muted">Quick controls for your connected devices.</p>
+  </div>
+</div>
+
+<div class="toolbar" aria-label="Device filters">
+  <div class="chips" role="tablist" aria-label="Rooms">
+    <button
+      class="chip is-active"
+      type="button"
+      data-room="all"
+      role="tab"
+      aria-selected="true"
+    >
+      All
+    </button>
+    <button
+      class="chip"
+      type="button"
+      data-room="Living Room"
+      role="tab"
+      aria-selected="false"
+    >
+      Living
+    </button>
+    <button
+      class="chip"
+      type="button"
+      data-room="Entry"
+      role="tab"
+      aria-selected="false"
+    >
+      Entry
+    </button>
+    <button
+      class="chip"
+      type="button"
+      data-room="Garage"
+      role="tab"
+      aria-selected="false"
+    >
+      Garage
+    </button>
+    <button
+      class="chip"
+      type="button"
+      data-room="Porch"
+      role="tab"
+      aria-selected="false"
+    >
+      Porch
+    </button>
+    <button
+      class="chip"
+      type="button"
+      data-room="Hallway"
+      role="tab"
+      aria-selected="false"
+    >
+      Hallway
+    </button>
+  </div>
+</div>
+
+<div class="grid">
+  <section class="card">
+    <div class="card__head">
+      <h2 class="h2">Devices</h2>
+      <span id="devicesMeta" class="muted small"
+        ><%= (@device_count || 0) %> online</span
+      >
+    </div>
+
+    <div id="devicesGrid" class="devices" aria-label="Device list">
+      <div
+        class="devicecard"
+        data-kind="lighting"
+        data-room="Living Room"
+        data-name="Living room lights"
+        data-state-key="lights"
+      >
+        <div class="devicecard__row">
+          <div class="device__left">
+            <div class="device__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 18h6" />
+                <path d="M10 22h4" />
+                <path d="M8 14a4 4 0 1 1 8 0c0 2-1 3-2 4H10c-1-1-2-2-2-4z" />
+              </svg>
+            </div>
+            <div class="device__text">
+              <div class="device__name">Living room lights</div>
+              <div class="device__meta">Living Room • Lighting</div>
+            </div>
+          </div>
+          <div class="device__right">
+            <span class="badge badge--ok">Online</span>
+            <span class="statePill" data-state="Off">Off</span>
+          </div>
+        </div>
+        <div class="devicecard__actions" aria-label="Lighting controls">
+          <button class="miniBtn" type="button" data-action="lights_on">
+            On
+          </button>
+          <button
+            class="miniBtn miniBtn--ghost"
+            type="button"
+            data-action="lights_off"
+          >
+            Off
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="devicecard"
+        data-kind="access"
+        data-room="Garage"
+        data-name="Garage door"
+        data-state-key="garage"
+      >
+        <div class="devicecard__row">
+          <div class="device__left">
+            <div class="device__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11l9-8 9 8" />
+                <path d="M5 10v10h14V10" />
+                <path d="M9 21v-6h6v6" />
+              </svg>
+            </div>
+            <div class="device__text">
+              <div class="device__name">Garage door</div>
+              <div class="device__meta">Garage • Access</div>
+            </div>
+          </div>
+          <div class="device__right">
+            <span class="badge badge--ok">Online</span>
+            <span class="statePill" data-state="Closed">Closed</span>
+          </div>
+        </div>
+        <div class="devicecard__actions" aria-label="Garage controls">
+          <button class="miniBtn" type="button" data-action="garage_open">
+            Open
+          </button>
+          <button
+            class="miniBtn miniBtn--ghost"
+            type="button"
+            data-action="garage_close"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="devicecard"
+        data-kind="access"
+        data-room="Entry"
+        data-name="Front door lock"
+        data-state-key="lock"
+      >
+        <div class="devicecard__row">
+          <div class="device__left">
+            <div class="device__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="6" y="10" width="12" height="10" rx="2" />
+                <path d="M8 10V8a4 4 0 0 1 8 0v2" />
+                <path d="M12 14v2" />
+              </svg>
+            </div>
+            <div class="device__text">
+              <div class="device__name">Front door lock</div>
+              <div class="device__meta">Entry • Access</div>
+            </div>
+          </div>
+          <div class="device__right">
+            <span class="badge badge--ok">Online</span>
+            <span class="statePill" data-state="Secured">Secured</span>
+          </div>
+        </div>
+        <div class="devicecard__actions" aria-label="Lock controls">
+          <button class="miniBtn" type="button" data-action="lock_status">
+            Check status
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="devicecard"
+        data-kind="security"
+        data-room="Porch"
+        data-name="Security camera"
+        data-state-key="camera"
+      >
+        <div class="devicecard__row">
+          <div class="device__left">
+            <div class="device__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <div class="device__text">
+              <div class="device__name">Security camera</div>
+              <div class="device__meta">Porch • Security</div>
+            </div>
+          </div>
+          <div class="device__right">
+            <span class="badge badge--ok">Online</span>
+            <span class="statePill" data-state="Idle">Idle</span>
+          </div>
+        </div>
+        <div class="devicecard__actions" aria-label="Camera controls">
+          <button class="miniBtn" type="button" data-action="camera_snap">
+            Capture snapshot
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="devicecard"
+        data-kind="security"
+        data-room="Entry"
+        data-name="Alarm system"
+        data-state-key="alarm"
+      >
+        <div class="devicecard__row">
+          <div class="device__left">
+            <div class="device__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2l8 4v6c0 5-3 9-8 10C7 21 4 17 4 12V6l8-4z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <div class="device__text">
+              <div class="device__name">Alarm system</div>
+              <div class="device__meta">Entry • Security</div>
+            </div>
+          </div>
+          <div class="device__right">
+            <span class="badge badge--ok">Online</span>
+            <span class="statePill" data-state="Disarmed">Disarmed</span>
+          </div>
+        </div>
+        <div class="devicecard__actions" aria-label="Alarm controls">
+          <button class="miniBtn" type="button" data-action="alarm_arm">
+            Arm
+          </button>
+          <button
+            class="miniBtn miniBtn--ghost"
+            type="button"
+            data-action="alarm_disarm"
+          >
+            Disarm
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="devicecard"
+        data-kind="climate"
+        data-room="Hallway"
+        data-name="Thermostat"
+        data-state-key="thermostat"
+      >
+        <div class="devicecard__row">
+          <div class="device__left">
+            <div class="device__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2v8" />
+                <path d="M12 14a4 4 0 1 0 0-8" />
+                <path d="M12 14v8" />
+                <path d="M8 18h8" />
+              </svg>
+            </div>
+            <div class="device__text">
+              <div class="device__name">Thermostat</div>
+              <div class="device__meta">Hallway • Climate</div>
+            </div>
+          </div>
+          <div class="device__right">
+            <span class="badge badge--ok">Online</span>
+            <span class="statePill" data-state="22°C">22°C</span>
+          </div>
+        </div>
+        <div class="devicecard__actions" aria-label="Thermostat controls">
+          <button class="miniBtn" type="button" data-action="thermostat_get">
+            Read temperature
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="change-layout">
+    <section class="card dashMeta--card">
+      <div class="dashMeta" aria-label="System status">
+        <div class="metaCard">
+          <div class="metaK muted">Hub</div>
+          <div class="metaV">
+            <span class="pill pill--ok">Connected</span>
+          </div>
+        </div>
+        <div class="metaCard">
+          <div class="metaK muted">Network</div>
+          <div class="metaV"><span class="pill">Stable</span></div>
+        </div>
+        <div class="metaCard">
+          <div class="metaK muted">Last sync</div>
+          <div class="metaV">
+            <span id="lastSyncPill" class="pill">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="searchWrap">
+        <label class="srOnly" for="deviceSearch">Search devices</label>
+        <input
+          id="deviceSearch"
+          class="search"
+          type="search"
+          placeholder="Search devices"
+          autocomplete="off"
+        />
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card__head">
+        <h2 class="h2">Status</h2>
+        <span class="muted small">Live</span>
+      </div>
+
+      <div class="statusBox" aria-label="System status">
+        <div id="statusLine" class="statusLine">Ready</div>
+        <button id="refreshBtn" class="btn btn--ghost" type="button">
+          Refresh
+        </button>
+      </div>
+    </section>
+  </section>
+</div>
+
+<section id="activity" class="card card--wide" style="margin-top: 14px">
+  <div class="card__head">
+    <h2 class="h2" style="margin: 0">Activity</h2>
+    <div id="activityMeta" class="muted small">Updating…</div>
+  </div>
+  <ul id="activityList" class="activityList" aria-label="Activity log"></ul>
+</section>
