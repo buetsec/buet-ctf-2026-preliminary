@@ -1,0 +1,5 @@
+services:
+  manifestvalid:
+    build: .
+    ports:
+      - "7777:5000"

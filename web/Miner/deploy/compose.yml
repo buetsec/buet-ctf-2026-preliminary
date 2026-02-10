@@ -1,0 +1,5 @@
+services:
+  miner:
+    build: .
+    ports:
+      - "7555:80"
