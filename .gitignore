@@ -416,3 +416,9 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# VSCode workspace files
+.vscode/**
+
+# Local History
+.lh/**
