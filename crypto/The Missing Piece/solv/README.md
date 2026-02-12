@@ -18,8 +18,8 @@ The solve has two phases:
 
 We know `n mod 2^532` and `(p XOR q) mod 2^532`. We can reconstruct the lower 532 bits of `p` and `q` one bit at a time using a BFS/branch-and-prune strategy:
 
-- Start with the LSB: both `p` and `q` must be odd (since they're prime), so `p₀ = q₀ = 1`.
-- At each bit position `k`, try extending every existing `(p_partial, q_partial)` candidate by setting the k-th bit to 0 or 1 for both `p` and `q`.
+- Start with the LSB: try all 4 combinations (p₀, q₀) ∈ {0,1}² and keep only those satisfying the constraints.
+- At each bit position `k`, try extending every existing `(p_partial, q_partial)` candidate by trying all 4 combinations: setting the k-th bit of p to 0 or 1, and independently setting the k-th bit of q to 0 or 1.
 - Prune candidates that violate either constraint:
   - `(p_partial * q_partial) mod 2^k == n mod 2^k` (product constraint)
   - `(p_partial XOR q_partial) mod 2^k == x mod 2^k` (XOR constraint)
