@@ -35,7 +35,7 @@ pip3 install requests
 
 ```
 ╔═══════════════════════════════════════════════════════════════╗
-║   Trust Issues v2: CVE-2021-3129 + Signed URL Chain          ║
+║   Shadow Protocol: CVE-2021-3129 + Signed URL Chain           ║
 ╚═══════════════════════════════════════════════════════════════╝
 
 PHASE 1: APP_KEY LEAK
