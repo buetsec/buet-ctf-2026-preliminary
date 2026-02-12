@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-CTF Solver Script - Trust Issues v2 Challenge
+CTF Solver Script - Shadow Protocol Challenge
 This script demonstrates the full exploit chain:
 1. Leak APP_KEY from debug page
 2. Forge signed URL for /_ignition/execute-solution
 3. Exploit CVE-2021-3129 to read /flag.txt
-
-DO NOT DISTRIBUTE TO PLAYERS.
 """
 
 import hmac
@@ -24,7 +22,7 @@ def main():
     
     target = sys.argv[1].rstrip('/')
     
-    print("[*] CTF Solver: Trust Issues v2")
+    print("[*] CTF Solver: Shadow Protocol")
     print(f"[*] Target: {target}")
     print()
     

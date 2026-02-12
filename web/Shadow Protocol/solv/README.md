@@ -1,6 +1,6 @@
 # Exploit Scripts
 
-This directory contains the complete exploit for the "Trust Issues v2" CTF challenge.
+This directory contains the complete exploit for the "Shadow Protocol" CTF challenge.
 
 ## Files
 
@@ -24,8 +24,6 @@ The exploit chains multiple vulnerabilities:
 1. **Leaks APP_KEY** from debug page (`/api/node/status?node_id=invalid`)
 2. **Forges signed URL** for `/_ignition/execute-solution` using HMAC-SHA256
 3. **Exploits CVE-2021-3129** (facade/ignition 2.5.1) to access `/flag.txt`
-4. **Forges another signed URL** for `/system/verify` 
-5. **Retrieves the flag** from verification endpoint
 
 ## Requirements
 
@@ -47,7 +45,7 @@ PHASE 2-3: SIGNATURE FORGERY + CVE-2021-3129
 [+] Signed URL forged
 [+] CVE-2021-3129 exploited successfully!
 
-PHASE 4: FLAG EXTRACTION
+PHASE 3: FLAG EXTRACTION
 [+] Flag retrieved successfully!
 
 =================================================================
@@ -63,13 +61,17 @@ SUCCESS!
 
 For a step-by-step manual approach, see `manual_exploit.md`.
 
+## Debug Artifacts
+
+The `solv/` directory includes actual HTTP response samples for reference:
+- **debug_response.html** - Example Laravel debug page showing the APP_KEY leak
+- **exploit_response.txt** - Example error response when testing exploitation paths
+
+These help understand what responses to expect during exploitation.
+
 ## Notes
 
 - The exploit works against Laravel 8 with facade/ignition 2.5.1
 - Requires APP_DEBUG=true to leak APP_KEY
-- Both `/_ignition/execute-solution` and `/system/verify` are protected by signed URLs
+- The `/_ignition/execute-solution` endpoint is protected by signed URLs
 - Players must modify public CVE-2021-3129 exploits to add signature parameters
-
----
-
-**DO NOT DISTRIBUTE TO CTF PLAYERS**

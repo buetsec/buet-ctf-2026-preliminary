@@ -1,4 +1,4 @@
-# CTF Challenge Solution: v2
+# CTF Challenge Solution: Shadow Protocol
 
 ---
 
@@ -41,6 +41,8 @@ This triggers a `hex2bin()` error. In the debug HTML response, find:
 ```
 APP_KEY=base64:dGhpc2lzYXNlY3JldGtleWZvcmN0ZmNoYWxsZW5nZSE=
 ```
+
+> **Reference**: See [debug_response.html](debug_response.html) for a full example of the debug page response showing the leaked APP_KEY in the error context.
 
 ### Step 3: Discover the Protected Ignition Endpoint
 
@@ -115,8 +117,8 @@ Response:
 {
   "success": true,
   "file": "/flag.txt",
-  "content": "FLAG{ignition_signature_chain_pwned}",
-  "base64": "RkxBR3tpZ25pdGlvbl9zaWduYXR1cmVfY2hhaW5fcHduZWR9Cg=="
+  "content": "BUETCTF{ignition_signature_chain_pwned}",
+  "base64": "QlVFVENURntpZ25pdGlvbl9zaWduYXR1cmVfY2hhaW5fcHduZWR9Cg=="
 }
 ```
 
@@ -194,3 +196,15 @@ Then decode the base64 content to get the flag.
 - CyberChef for HMAC generation
 - Burp Suite for request manipulation
 - Python/bash for automation
+
+---
+
+## Debug Artifacts
+
+This solution directory includes actual HTTP response samples:
+
+- **debug_response.html** - Full Laravel Ignition debug page showing how the APP_KEY is leaked in error context when triggering the `hex2bin()` validation error. Shows the exact format players should look for.
+
+- **exploit_response.txt** - An error response when attempting to use the standard `MakeViewVariableOptionalSolution` to directly write to `/flag.txt`. This demonstrates why the custom `ReadFileSolution` class or log poisoning methods are necessary (direct file writing fails due to permissions).
+
+These artifacts help players understand what to expect during exploitation attempts.

