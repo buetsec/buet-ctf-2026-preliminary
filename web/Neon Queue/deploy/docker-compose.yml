@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    networks:
+      - neonnet
+
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=n30n_qu3u3_sup3r_s3cr3t_k3y_2024
+      - DATABASE_URL=sqlite:////app/data/neonqueue.db
+    depends_on:
+      - redis
+    networks:
+      - neonnet
+    volumes:
+      - api_data:/app/data
+
+  worker:
+    build: ./worker
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DATABASE_URL=sqlite:////app/data/neonqueue.db
+    depends_on:
+      - redis
+      - api
+    networks:
+      - neonnet
+    volumes:
+      - api_data:/app/data
+      - ./flag.txt:/flag.txt:ro
+    restart: unless-stopped
+    deploy:
+      replicas: 3  # Run 3 workers for parallel processing
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=10M
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - neonnet
+    command: redis-server --save "" --appendonly no --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+networks:
+  neonnet:
+    driver: bridge
+
+volumes:
+  api_data:

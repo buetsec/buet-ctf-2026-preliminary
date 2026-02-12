@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /internal/
+Disallow: /debug/
+Disallow: /backup/
+Disallow: /config/
+Disallow: /storage/
+Disallow: /private/
+Disallow: /system/
+Disallow: /maintenance/
+Disallow: /logs/
+Disallow: /cache/
+Disallow: /tmp/
+Disallow: /.git/
+Disallow: /.env

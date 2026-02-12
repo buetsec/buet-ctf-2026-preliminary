@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEON QUEUE // Terminal v3.7</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="header-left">
+                <span class="logo">◈ NEON<span class="accent">QUEUE</span></span>
+                <span class="version">v3.7.2</span>
+            </div>
+            <div class="header-right">
+                <span class="status-indicator"></span>
+                <span id="connection-status">DISCONNECTED</span>
+                <span class="divider">|</span>
+                <span id="user-display">GUEST</span>
+                <button id="logout-btn" class="btn-small hidden">LOGOUT</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Auth Panel -->
+            <section id="auth-panel" class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">◈ ACCESS TERMINAL</span>
+                </div>
+                <div class="panel-content">
+                    <div class="auth-tabs">
+                        <button class="tab-btn active" data-tab="login">LOGIN</button>
+                        <button class="tab-btn" data-tab="register">REGISTER</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form">
+                        <div class="input-group">
+                            <label for="login-username">USERNAME</label>
+                            <input type="text" id="login-username" name="username" required autocomplete="off">
+                            <span class="input-glow"></span>
+                        </div>
+                        <div class="input-group">
+                            <label for="login-password">PASSWORD</label>
+                            <input type="password" id="login-password" name="password" required>
+                            <span class="input-glow"></span>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">AUTHENTICATE</span>
+                            <span class="btn-loader hidden"></span>
+                        </button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="register-form" class="auth-form hidden">
+                        <div class="input-group">
+                            <label for="register-username">USERNAME</label>
+                            <input type="text" id="register-username" name="username" required autocomplete="off">
+                            <span class="input-glow"></span>
+                        </div>
+                        <div class="input-group">
+                            <label for="register-email">EMAIL</label>
+                            <input type="email" id="register-email" name="email" required autocomplete="off">
+                            <span class="input-glow"></span>
+                        </div>
+                        <div class="input-group">
+                            <label for="register-password">PASSWORD</label>
+                            <input type="password" id="register-password" name="password" required>
+                            <span class="input-glow"></span>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">INITIALIZE USER</span>
+                            <span class="btn-loader hidden"></span>
+                        </button>
+                    </form>
+
+                    <!-- OTP Verification -->
+                    <form id="otp-form" class="auth-form hidden">
+                        <div class="otp-notice">
+                            <span class="notice-icon">⚠</span>
+                            <p>VERIFICATION CODE SENT TO YOUR REGISTERED EMAIL</p>
+                        </div>
+                        <div class="input-group">
+                            <label for="otp-code">VERIFICATION CODE</label>
+                            <input type="text" id="otp-code" name="otp" required maxlength="10" autocomplete="off">
+                            <span class="input-glow"></span>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">VERIFY</span>
+                            <span class="btn-loader hidden"></span>
+                        </button>
+                    </form>
+
+                    <div id="auth-message" class="message hidden"></div>
+                </div>
+            </section>
+
+            <!-- Dashboard Panel (Hidden until authenticated) -->
+            <section id="dashboard-panel" class="panel hidden">
+                <div class="panel-header">
+                    <span class="panel-title">◈ TASK CONTROL CENTER</span>
+                    <span class="refresh-indicator" id="refresh-indicator">⟳</span>
+                </div>
+                <div class="panel-content">
+                    <!-- Task Submission -->
+                    <div class="task-section">
+                        <h3 class="section-title">// SUBMIT NEW TASK</h3>
+                        <form id="task-form">
+                            <div class="input-group">
+                                <label for="task-type">TASK TYPE</label>
+                                <select id="task-type" name="task_type" required>
+                                    <option value="">-- SELECT TASK --</option>
+                                    <option value="send_email">SEND EMAIL</option>
+                                    <option value="get_news">GET RECENT NEWS</option>
+                                    <option value="system_status">SYSTEM STATUS</option>
+                                </select>
+                                <span class="input-glow"></span>
+                            </div>
+                            
+                            <!-- Dynamic Parameters -->
+                            <div id="task-params" class="task-params hidden">
+                                <!-- Email params -->
+                                <div id="email-params" class="param-group hidden">
+                                    <div class="input-group">
+                                        <label for="email-to">RECIPIENT</label>
+                                        <input type="email" id="email-to" name="to" autocomplete="off">
+                                        <span class="input-glow"></span>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="email-subject">SUBJECT</label>
+                                        <input type="text" id="email-subject" name="subject" autocomplete="off">
+                                        <span class="input-glow"></span>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="email-body">MESSAGE</label>
+                                        <textarea id="email-body" name="body" rows="3"></textarea>
+                                        <span class="input-glow"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary">
+                                <span class="btn-text">QUEUE TASK</span>
+                                <span class="btn-loader hidden"></span>
+                            </button>
+                        </form>
+                        <div id="task-message" class="message hidden"></div>
+                    </div>
+
+                    <!-- Task History -->
+                    <div class="task-section">
+                        <h3 class="section-title">// TASK HISTORY</h3>
+                        <div id="task-list" class="task-list">
+                            <div class="task-empty">NO TASKS FOUND</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-left">
+                <span class="blink">█</span> SYSTEM READY
+            </div>
+            <div class="footer-right">
+                <span>NODE: <span class="accent">ALPHA-7</span></span>
+                <span class="divider">|</span>
+                <span>UPTIME: <span id="uptime">00:00:00</span></span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

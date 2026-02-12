@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  shadownet:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shadownet-ctf
+    restart: unless-stopped
+    ports:
+      - "5050:80"
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=true
+      - APP_KEY=base64:dGhpc2lzYXNlY3JldGtleWZvcmN0ZmNoYWxsZW5nZSE=
+    networks:
+      - shadownet
+
+networks:
+  shadownet:
+    driver: bridge
