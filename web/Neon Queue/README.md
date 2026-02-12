@@ -1,6 +1,6 @@
 ## Neon Queue
 
-Author: j3br
+Author: selen0phile
 
 Difficulty: HARD
 

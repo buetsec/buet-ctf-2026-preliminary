@@ -1,6 +1,6 @@
 ## Shadow Protocol
 
-Author: j3br
+Author: selen0phile
 
 Difficulty: HARD
 
