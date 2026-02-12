@@ -1,6 +1,6 @@
 Challenge: Half Life 2.0
 
-Points: 500
+Difficulty: EASY
 
 Author: Tsumi
 

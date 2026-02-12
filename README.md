@@ -9,7 +9,7 @@ Problem set of Inter-University CTF 2026
 | Android | [Flagmart](android/Flagmart) | Medium | [marufmurtuza](https://github.com/marufmurtuza) |
 | Crypto | [A Tribute To A Legend](crypto/A%20Tribute%20To%20A%20Legend) | Easy | [mrtaz77](https://github.com/mrtaz77) |
 | Crypto | [Discrete RNG](crypto/Discrete%20RNG) | Hard | [Tsumiiiiiiii](https://github.com/Tsumiiiiiiii) |
-| Crypto | [Half Life 2.0](crypto/Half%20Life%202.0) | Medium | [Tsumiiiiiiii](https://github.com/Tsumiiiiiiii) |
+| Crypto | [Half Life 2.0](crypto/Half%20Life%202.0) | Easy | [Tsumiiiiiiii](https://github.com/Tsumiiiiiiii) |
 | Crypto | [The Missing Piece](crypto/The%20Missing%20Piece) | Medium | [mrtaz77](https://github.com/mrtaz77) |
 | Forensics | [Phantom Intrusion](forensics/Phantom%20Intrusion) | Easy - Hard | [Spondon16](https://github.com/Spondon16) |
 | Rev | [AltCtrl](rev/altctrl) | Medium | [ImtiazKabir](https://github.com/ImtiazKabir) |
