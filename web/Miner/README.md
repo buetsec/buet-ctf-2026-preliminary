@@ -10,3 +10,5 @@ We have been asked to perform a penetration test on an old and poorly maintained
 Flag format: buetctf{fl4g}
 
 Wave: 9PM
+
+Solution: [Adminer 4.6.2 Arbitrary File Read Vulnerability](https://podalirius.net/en/articles/writing-an-exploit-for-adminer-4.6.2-arbitrary-file-read-vulnerability/)
